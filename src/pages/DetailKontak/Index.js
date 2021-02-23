@@ -28,12 +28,43 @@ export default class DetailKontak extends Component {
     render() {
         const {kontak} = this.state
         return (
-            <View>
-                <Text>Halaman Detail Kontak</Text>
-                <Text>Detail Kontak {kontak.nama}</Text>
+            <View style ={styles.pages}>
+                <Text>Nama : </Text>
+                <Text style= {styles.text}>{kontak.nama}</Text>
+
+                <Text>Umur : </Text>
+                <Text style= {styles.text}>{kontak.umur}</Text>
+
+                <Text>Keterangan : </Text>
+                <Text style= {styles.text}>{kontak.keterangan}</Text>
+
+                <Text>Koordinat : </Text>
+                <Text style= {styles.text}>{kontak.Latitude}</Text>
+                <Text style= {styles.text}>{kontak.Longitude}</Text>
             </View>
         )
     }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+
+    pages : {
+        margin: 30,
+        padding: 20,
+        backgroundColor: 'white',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+    },
+    text : {
+        fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    }
+})

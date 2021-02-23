@@ -1,7 +1,7 @@
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity,Alert } from 'react-native'
 import styles from './style'
 import Firebase from '../../config/Firebase/Index'
 import CardKontak from '../../component/cardUser/Index'
@@ -18,17 +18,43 @@ export default class Home extends Component {
     }
 
     componentDidMount() {
-        Firebase.database()
-            .ref('Kontak')
-            .once('value', (querySnapShot) => {
-                let data = querySnapShot.val() ? querySnapShot.val() : {};
-                let userItem = { ...data };
+       this.updateData();
+    }
 
-                this.setState({
-                    users: userItem,
-                    usersKey: Object.keys(userItem),
-                })
+    updateData=()=> {
+        Firebase.database()
+        .ref('Kontak')
+        .once('value', (querySnapShot) => {
+            let data = querySnapShot.val() ? querySnapShot.val() : {};
+            let userItem = { ...data };
+
+            this.setState({
+                users: userItem,
+                usersKey: Object.keys(userItem),
             })
+        })
+    }
+
+    removeData = (id)=>{
+        Alert.alert(
+            "Warning",
+            "Apakah AndA Yakin Data Dihapus ?",
+            [
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel"
+              },
+              { text: "OK", onPress: () => {
+                  Firebase.database()
+                  .ref('Kontak/'+id)
+                  .remove();
+                  this.updateData();
+                  Alert.alert('Hapus', 'Data Berhasil Di Hapus')
+              } }
+            ],
+            { cancelable: false }
+          );
     }
 
     render() {
@@ -43,7 +69,8 @@ export default class Home extends Component {
                 <View style={styles.listUser}>
                     {usersKey.length > 0 ? (
                         usersKey.map((key) => (
-                            <CardKontak key={key} userItem={users[key]} id={key} {...this.props} />
+                            <CardKontak key={key} userItem={users[key]} id={key} {...this.props}
+                            removeData={this.removeData} />
 
                         ))
                     ) : (
