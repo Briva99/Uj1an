@@ -11,7 +11,7 @@ const Router = () => {
         <Stack.Navigator>
             <Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
             <Stack.Screen name="Addusers" component={Addusers}  />
-            <Stack.Screen name="Addusers" component={DetailKontak}  />
+            <Stack.Screen name="DetailKontak" component={DetailKontak}  />
         </Stack.Navigator>
     )
 }
