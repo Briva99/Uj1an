@@ -11,9 +11,9 @@ const Router = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
-            <Stack.Screen name="Addusers" component={Addusers}  />
-            <Stack.Screen name="DetailKontak" component={DetailKontak}  />
-            <Stack.Screen name="editUser" component={editUser}  />
+            <Stack.Screen name="Addusers" component={Addusers}  options={{title :'Tambah Laporan'}}/>
+            <Stack.Screen name="DetailKontak" component={DetailKontak}  options={{title :'Detail Laporan'}}/>
+            <Stack.Screen name="editUser" component={editUser} options={{title :'Edit Laporan'}} />
         </Stack.Navigator>
     )
 }

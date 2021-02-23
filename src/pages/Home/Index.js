@@ -62,7 +62,7 @@ export default class Home extends Component {
         return (
             <View style={styles.page}>
                 <View style={styles.header}>
-                    <Text style={styles.title}>Daftar User</Text>
+                    <Text style={styles.title}>Daftar Laporan</Text>
                     <View style={styles.garis} />
                 </View>
 
