@@ -182,6 +182,8 @@ export default class Addusers extends Component {
     };
     onSubmit = () => {
         if(this.state.nama && this.state.umur){
+            // penyimpanan di realtime database 'Firebase.database()' Firebase.Auth()=> untuk save 
+            // di Autenthication
             const tambahUser = Firebase.database().ref('Kontak');
             const kontak ={
                 nama : this.state.nama,
